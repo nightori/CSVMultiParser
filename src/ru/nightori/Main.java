@@ -9,6 +9,12 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
+        // args must not be empty
+        if (args.length == 0) {
+            System.out.println("Please provide input files as command line arguments");
+            return;
+        }
+
         // determine pool size based on the number of cores
         int poolSize = Runtime.getRuntime().availableProcessors();
 
