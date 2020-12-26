@@ -1,7 +1,5 @@
 package ru.nightori;
 
-import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -29,17 +27,7 @@ public class Main {
         // close the pool and await shutdown
         pool.shutdown();
         if (pool.awaitTermination(Long.MAX_VALUE, TimeUnit.DAYS)) {
-            // when everything is done, get the result
-            Map<String, Set<String>> map = ValueHolder.get();
-
-            // print the result
-            for (String key : map.keySet()) {
-                System.out.println(key + ":");
-                for (String value : map.get(key)) {
-                    System.out.print(value + ";");
-                }
-                System.out.println();
-            }
+            ValueHolder.export("output/");
         }
     }
 }
